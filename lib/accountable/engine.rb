@@ -1,5 +1,16 @@
 module Accountable
   class Engine < Rails::Engine
-    isolate_namespace Accountable
+    #isolate_namespace Accountable
+
+      initializer "accountable.load_app_instance_data" do |app|
+        Accountable.setup do |config|
+          config.app_root = app.root
+        end
+      end
+
+      initializer "accountable.load_static_assets" do |app|
+        app.middleware.use ::ActionDispatch::Static, "#{root}/public"
+      end
+      
   end
 end

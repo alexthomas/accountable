@@ -19,6 +19,14 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.2.8"
   s.add_dependency "jquery-rails"
   s.add_dependency "devise", ">= 2.1.0"
+  s.add_dependency "cancan", ">= 1.6.7"
+  s.add_dependency "rolify", ">= 3.1.0"
+  
+  s.add_dependency 'sass-rails',   '~> 3.2.3'
+  s.add_dependency 'coffee-rails', '~> 3.2.1'
+  s.add_dependency'uglifier', '>= 1.0.3'
+  s.add_dependency "bootstrap-sass", ">= 2.0.1"
+  s.add_dependency "resque", "~> 1.0"
   
   s.add_development_dependency "sqlite3"
 
