@@ -1,9 +1,10 @@
+
 <h1><%= form_type %> User</h1>
 
 <%= form_for @user, :html => { :class => "stacked form", :id => "#{form_type}_user_form",:multipart => true } do |f| %>
 	<%= f.fields_for :profile do | pf | %>
 	
-		<%= render :partial => 'profile/profile_form', :locals => {:f => pf,:pf_names => @upf_names,:new_profile => f.object.new_record?} %>
+		<%= render :partial => 'accountable/profile/profile_form', :locals => {:f => pf,:pf_names => @pf_names,:new_profile => f.object.new_record?} %>
 
 	<% end %>
 	<div class="input">

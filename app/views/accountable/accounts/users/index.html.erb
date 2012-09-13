@@ -1,15 +1,14 @@
 <h1>All Users</h1>
-<%= form_for :user_search, :url => users_url, :html => { :class => "", :id => "#{@user_type}_search_form"}  do | usf | %>
+<%= form_for :user_search, :url => users_url, :html => { :class => "", :id => "user_search_form"}  do | usf | %>
 <div id="find-user" class="box">
-	<h3>Find <%= @user_type %>&hellip;</h3>
+	<h3>Find User&hellip;</h3>
 	<%= usf.label :user_name %>
 	<div class="input">
 	<%= usf.text_field :user_name, :class => "user_search_text"%>
 	<%= usf.submit "Find", :id => "user_search_submit", :class => 'btn' %>
 
 	</div>
-	<%= usf.hidden_field :type, :value => @user_type %>
 </div>
 <% end %>
 <%= render :partial => 'user_list' %>	
-<%= render :partial => 'index_actions', :locals => {:object => @user_type.capitalize} %>
+<%= render :partial => 'index_actions', :locals => {:object => 'User'} %>

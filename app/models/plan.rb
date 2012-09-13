@@ -7,4 +7,8 @@ class Plan < ActiveRecord::Base
   
   attr_accessible :name,:description,:max_users,:max_groups,:max_events,:max_active_events,:max_event_days,:price,:private
   
+  def can_add_user user
+    plan = user.account.plan
+    can_add = plan.max_users == 0 || plan.max_users >= user.account.members.size
+  end
 end

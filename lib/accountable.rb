@@ -1,5 +1,7 @@
 require 'cancan'
 require 'jquery-rails'
+require 'resque'
+require 'will_paginate'
 
 require "accountable/engine"
 

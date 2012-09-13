@@ -1,16 +1,15 @@
-<% users = (@all.nil?) ? instance_variable_get("@#{@user_type}s") : @all %>
+
 
 <div id="user-list-holder">
-<% if !users.empty?%>
-	<%= will_paginate users, :param_name => :user_page %>
+<% if !@users.empty?%>
+	<%= will_paginate @users, :param_name => :user_page %>
 
 	<ul id="user-list">
-		<% users.each do | tou | %>
-		<% @user_type = (@user_type == 'all') ? tou.user.person_type.downcase : @user_type %>
-		<%= render :partial => "accounts/users/#{@user_type}s/#{@user_type}",:object => tou %>
+		<% @users.each do | user | %>
+		<li><%= render :partial => "accountable/accounts/users/user", :object => user %></li>
 		<% end %>
 	</ul>
 
-	<%= will_paginate users, :param_name => :user_page %>
+	<%= will_paginate @users, :param_name => :user_page %>
 <% end %>
 </div>

@@ -15,9 +15,9 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
 
-  attr_accessor :confirming
+  attr_accessor :invite_code, :confirming
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
@@ -25,9 +25,29 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :profile,   :allow_destroy => true
   
+  
+  validates_uniqueness_of :email, :case_sensitive => false, :allow_blank => true, :if => :email_changed? 
+  validates_format_of :email, :with => Devise.email_regexp, :allow_blank => true, :if => :email_changed? 
+  
+  validates :password,  :presence => {:on => :create},
+                        :confirmation => true,
+                        :length => { :within => Devise.password_length,:on => :create },
+                        :if => lambda { |user| user.user_status > 0 || (user.user_status == 0 && user.confirming)}
+  
+  validates :password,  :presence => {:on => :update},
+                        :confirmation => true,
+                        :length => { :within => Devise.password_length,:on => :update },
+                        :if => lambda { |user| !user.password.nil? || (user.user_status == 0 && user.confirming)}
+  
+  validates :invite_code, :invite_code  => { :association => 'invite', :allow_nil => false },
+                          :if => lambda { |user| user.user_status == 0 && user.confirming}
+  
   delegate :name, :to => :profile
   delegate :address, :to => :profile
   
+  before_save :confirm_user
+  before_create :build_invite
+  after_create :send_confirmation_email
   def is_confirmed?
     self.user_status == 1
   end
@@ -72,6 +92,10 @@ class User < ActiveRecord::Base
   end
 
   private 
+  
+    def build_invite
+      self.build_invite(:invite_code =>"#{self.generate_invite_code}",:invitee_id => self.moa.owner.id,:invite_date => Time.now)
+    end
   
     def send_confirmation_email
       logger.debug "enquing confirmation email #{self.user_status}"
