@@ -1,0 +1,14 @@
+<h1>New Account</h1>
+	
+	
+<%= form_for @account, :html => { :class => "stacked form", :id => "#{form_type}_account_form",:multipart => true } do |f| %>
+ 	
+	<%= f.fields_for :owner do | of | %>	
+		<%= render :partial => 'accountable/accounts/users/account_user', :locals => {:f => of} %>
+		
+	<% end %>
+
+	<div class="inner-actions">
+		<%= f.submit "#{form_type} Account", :class => 'btn primary'%>
+	</div>	
+<% end %>

@@ -27,6 +27,8 @@ Gem::Specification.new do |s|
   s.add_dependency'uglifier', '>= 1.0.3'
   s.add_dependency "bootstrap-sass", ">= 2.0.1"
   s.add_dependency "resque", "~> 1.0"
+  s.add_dependency "will_paginate"
+  s.add_dependency "twitter"
   
   s.add_development_dependency "sqlite3"
 

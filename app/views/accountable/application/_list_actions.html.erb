@@ -1,0 +1,10 @@
+<div class="inner-actions">		
+	<ul class="actions-list unstyled">
+		<% if can? :update, object %>
+		<li><%= link_to "Edit", send("edit_#{object.class.to_s.downcase}_path",object), :class => "btn"  %></li>
+		<% end %>
+		<% if can? :destroy, object %>
+		<li><%= button_to "Delete",send("#{object.class.to_s.downcase}_path",object), :confirm => "Are you sure?", :method=>:delete, :class=> 'destroy btn danger' %></li>
+		<% end %>
+	</ul>
+</div>

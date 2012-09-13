@@ -1,24 +1,13 @@
 class AccountableCreateUsersTables < ActiveRecord::Migration
-  
-  def up
-    add_column :users, :user_status, :integer, :default => -1
-    add_column :users, :account_id, :integer
-  end
-  
-  def down
-     remove_column :users, :user_status
-     remove_column :users, :account_id
-  end
-  
   def change
-    
+ 
     create_table :roles do |t|
       t.string :name
 
       t.timestamps
     end
     
-    create_table :role_assignments do |t|
+    create_table :assigned_roles do |t|
       t.integer :user_id
       t.integer :role_id
 

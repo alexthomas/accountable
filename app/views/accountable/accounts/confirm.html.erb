@@ -1,0 +1,12 @@
+<%= form_for @account, :html => { :class => "stacked form", :id => "#confirm_account_form" } do |f| %>
+
+	<%= f.fields_for :owner do | of | %>
+		<%= render :partial => 'accounts/users/password_form', :locals => {:f => of,:user => @account.owner} %>
+	<% end %>
+	
+	<%= f.hidden_field :confirmation_code, :value => @confirmation_code %>
+	<%= f.hidden_field :confirming, :value => true %>
+	<div class="inner-actions">
+		<%= f.submit "Confirm Account", :class => 'btn primary'%>
+	</div>
+<% end %>

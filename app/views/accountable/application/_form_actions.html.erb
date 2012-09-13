@@ -1,0 +1,6 @@
+<div class="inner-actions">		
+	<ul class="actions-list unstyled">
+		<li><%= f.submit "#{form_type} #{object.class.to_s}", :class => 'btn primary' %></li>
+		<li><%= link_to "All #{object.class.to_s}s", send("#{object.class.to_s.downcase}s_path"), :class => 'btn' %></li>
+	</ul>
+</div>

@@ -1,0 +1,7 @@
+
+<%= f.fields_for :profile do | pf | %>
+	<%= render :partial => 'accountable/profile/profile_form', :locals => {:f => pf,:pf_names => @pf_names,:new_profile => f.object.new_record?} %>
+
+<% end %>
+
+

@@ -11,6 +11,7 @@ module Accountable
     yield self
   end
   
+  require "validators/invite_code_validator"
   require "accountable/models"
   require "accountable/search_helpers"
   require "accountable/users/accessible_helpers"

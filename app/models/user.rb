@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   extend Accountable::Users::ProfileHelpers, Accountable::Users::AccessibleHelpers,Accountable::SearchHelpers
-  has_many :assigneed_roles, :dependent => :destroy
-  has_many :roles, :through => :assigneed_roles
+  has_many :assigned_roles, :dependent => :destroy
+  has_many :roles, :through => :assigned_roles
+  
+  has_many :assigned_groups, :dependent => :destroy
+  has_many :groups, :through => :assigned_groups
   
   has_one :profile, :as => :profileable, :dependent => :destroy
   has_one :account, :foreign_key => :owner_id, :dependent => :destroy

@@ -7,7 +7,7 @@ class AccountableCreateUsersTables < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table :role_assignments do |t|
+    create_table :assigned_roles do |t|
       t.integer :user_id
       t.integer :role_id
 

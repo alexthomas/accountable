@@ -1,0 +1,11 @@
+<%= f.hidden_field :profile_field_id %>
+<% field_id = pf_names.fetch(f.object.profile_field_id).downcase.strip.tr(' ','-')%>
+<div id="<%=field_id%>">
+	<%= f.label pf_names.fetch(f.object.profile_field_id) %>
+	<% pf = ProfileField.find f.object.profile_field_id %>
+	<% field_type = pf.input_type %>
+	<div class="input">	
+	<%= f.send field_type, :value, :rows => 6%>
+	</div>
+	<%= f.hidden_field :publik%>
+</div>

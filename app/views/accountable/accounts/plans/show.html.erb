@@ -1,0 +1,5 @@
+<h2><%= @plan.name %></h2>
+<div><%= @plan.description %></div>
+
+<%= link_to 'Edit Plan', edit_plan_path(@plan), :class => "btn" %>
+<%= link_to 'All Plans', plans_path, :class => "btn" %>

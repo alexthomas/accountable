@@ -1,0 +1,9 @@
+<%= f.label :name %>
+<div class="input">
+<%= f.text_field :name%>	
+</div>
+
+
+<%= f.fields_for :active_fields do | af | %>
+		<%= render :partial => 'accountable/profile/active_fields', :locals => {:f => af,:pf_names => pf_names} %>
+<% end %>
