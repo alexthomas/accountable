@@ -3,7 +3,36 @@
 <%= f.text_field :name%>	
 </div>
 
+<%= f.fields_for :photo do |photo| %>
+	<% unless new_profile || f.object.photo.id.nil? %>
+	<div id="speaker-photo">
+		<div class="input">
+		<%= image_tag photo.object.url(:small) %>
+		</div>
+		
+		<div class="checkbox-wrap">
+			<%= photo.label :_destroy, "Delete Photo" %>
+			<div class="input">
+				
+			<%= photo.check_box :_destroy %>
+			</div>
+		</div>
+	</div>
+	<% end %>        
+	<br clear="all"/>
+	<%= photo.label :image, "Photo" %>
+	<div class="input">
+ 	<%= photo.file_field :attachment %>
+	</div>
+	<div id="twitter-photo"></div>
+	<div id="photo-url">
+		<%= photo.label :asset_url, "Photo URL" %>
+		<div class="input">
+		<%= photo.text_field :asset_url %>
+		</div>
+	</div>
+<% end %>
 
 <%= f.fields_for :active_fields do | af | %>
-		<%= render :partial => 'accountable/profile/active_fields', :locals => {:f => af,:pf_names => pf_names} %>
+		<%= render :partial => 'profile/active_fields', :locals => {:f => af,:pf_names => pf_names} %>
 <% end %>

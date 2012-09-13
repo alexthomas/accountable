@@ -47,7 +47,7 @@ module Accountable
           self.build_profile unless self.profile
           self.build_profile_fields
           logger.debug "initialising profile object #{self.profile.inspect}"
-          #self.profile.build_photo unless self.profile.photo
+          self.profile.build_photo unless self.profile.photo
         end
       
         def build_profile_fields
