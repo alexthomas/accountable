@@ -2,13 +2,13 @@ class Profile < ActiveRecord::Base
   
   belongs_to :profileable, :polymorphic => true
   
-  #has_one :photo, :as => :imageable,  :class_name => "Image", :dependent => :destroy
+  has_one :photo, :as => :assetable,  :class_name => "Image", :dependent => :destroy
   has_one :address, :as => :addressable
   
   has_many :active_fields, :dependent => :destroy
   has_many :profile_fields, :through => :active_fields
   
-  #accepts_nested_attributes_for :photo,   :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :photo,   :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :active_fields,   :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :address,     :allow_destroy => true
   

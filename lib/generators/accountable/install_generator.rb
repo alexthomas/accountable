@@ -28,6 +28,8 @@ module Accountable
             migration_template 'accounts_migration.rb', 'db/migrate/accountable_create_accounts_tables.rb'
             sleep(1)
             migration_template 'users_migration.rb', 'db/migrate/accountable_create_users_tables.rb'
+            sleep(1)
+            migration_template 'add_account_columns_to_user.rb', 'db/migrate/accountable_add_account_columns_to_users_table.rb'
             
 
 

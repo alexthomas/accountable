@@ -2,8 +2,8 @@ module Accountable
   
   class AccountsController < ApplicationController
     load_and_authorize_resource
-    skip_authorize_resource :only => :new
-    before_filter :get_plan, :only => ['new','create']
+    skip_authorize_resource :only => [:new,:create ]
+    before_filter :get_plan, :only => [:new,:create]
     before_filter :set_profile_field_names, :only => ['new','edit','create','update']
    
     def index
