@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912160359) do
+ActiveRecord::Schema.define(:version => 20120914104032) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "owner_id"
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(:version => 20120912160359) do
 
   add_index "active_fields", ["profile_field_id"], :name => "index_active_fields_on_profile_field_id"
   add_index "active_fields", ["profile_id"], :name => "index_active_fields_on_profile_id"
+
+  create_table "assets", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "type"
+    t.integer  "assetable_id"
+    t.string   "assetable_type"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.integer  "asset_remote_url"
+    t.datetime "attachment_updated_at"
+  end
 
   create_table "assigned_groups", :force => true do |t|
     t.integer "user_id"
@@ -121,10 +134,9 @@ ActiveRecord::Schema.define(:version => 20120912160359) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "user_status",            :default => -1
-    t.integer  "account_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "user_status",            :default => -1
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

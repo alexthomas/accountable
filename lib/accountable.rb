@@ -3,6 +3,7 @@ require 'jquery-rails'
 require 'resque'
 require 'will_paginate'
 require 'open-uri'
+require 'paperclip'
 
 require "accountable/engine"
 

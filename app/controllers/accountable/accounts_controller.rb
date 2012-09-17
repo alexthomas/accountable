@@ -4,7 +4,9 @@ module Accountable
     load_and_authorize_resource
     skip_authorize_resource :only => [:new,:create ]
     before_filter :get_plan, :only => [:new,:create]
-    before_filter :set_profile_field_names, :only => ['new','edit','create','update']
+    before_filter :only => ['new','edit','create','update'] do | controller |
+      controller.set_profile_field_names('User')
+    end
    
     def index
       Account.accessible_by(current_ability).paginate(:page => params[:page])

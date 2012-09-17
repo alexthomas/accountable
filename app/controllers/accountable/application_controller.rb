@@ -23,12 +23,15 @@ module Accountable
     end
       
     def set_profile_field_names(klass=nil)
-      #klass ||= controller_klass
-      #@pf_names = {}
-      #return if !klass.constantize.respond_to?(:profile_field_names)
-      #@pf_names = klass.constantize.profile_field_names
-      @pf_names = User.profile_field_names
+      klass ||= controller_klass
+      @pf_names = {}
+      return if !klass.constantize.respond_to?(:profile_field_names)
+      @pf_names = klass.constantize.profile_field_names
       logger.debug "pf names #{@pf_names.inspect}"
+    end
+
+    def controller_klass
+        controller_klass = self.class.name.split(':').last.sub("Controller", "").singularize
     end
   end
 end
