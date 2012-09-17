@@ -5,7 +5,7 @@ class Account < ActiveRecord::Base
   has_many :members, :class_name => 'User', :foreign_key => :account_id
   has_one :confirmation_invite, :class_name => 'Invite', :as => :inviteable, :dependent => :destroy
   
-  accepts_nested_attributes_for :owner 
+  accepts_nested_attributes_for :owner
   
   validates :plan,      :presence => true
   validates :confirmation_code, :invite_code  => { :association => 'confirmation_invite', :allow_nil => false },
