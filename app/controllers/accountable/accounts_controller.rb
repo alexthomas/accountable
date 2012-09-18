@@ -1,6 +1,6 @@
 module Accountable
   
-  class AccountsController < ApplicationController
+  class AccountsController < AccountableController
     load_and_authorize_resource
     skip_authorize_resource :only => [:new,:create ]
     before_filter :get_plan, :only => [:new,:create]
@@ -25,11 +25,10 @@ module Accountable
     def create
       @account = Account.new params[:account]
       @account.plan = @plan
-      logger.debug "inspecting plan #{@plan.inspect}"
-      logger.debug "inspecting account #{@account.inspect}"
-      logger.debug "inspecting account plan #{@account.plan.inspect}"
+
       @account.owner.assigned_roles.build :role_id => 3
       @account.owner.assigned_groups.build :group_id => 1
+      @account.owner.user_status = 0
       
       if @account.save
         flash[:success] = "Account Successfully created"

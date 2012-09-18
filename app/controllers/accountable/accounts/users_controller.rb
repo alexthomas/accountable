@@ -1,6 +1,6 @@
 module Accountable
   module Accounts   
-    class UsersController < ApplicationController
+    class UsersController < AccountableController
       load_and_authorize_resource
       before_filter :is_confirmed?, :only => [:confirm]
       before_filter :set_body_id

@@ -1,6 +1,6 @@
 module Accountable
   module Accounts 
-    class PlansController < ApplicationController
+    class PlansController < AccountableController
 
  
       def index

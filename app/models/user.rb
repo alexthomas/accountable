@@ -32,12 +32,14 @@ class User < ActiveRecord::Base
   validates :password,  :presence => {:on => :create},
                         :confirmation => true,
                         :length => { :within => Devise.password_length,:on => :create },
-                        :if => lambda { |user| user.user_status > 0 || (user.user_status == 0 && user.confirming)}
+                        #:if => lambda { |user| user.user_status > 0 || (user.user_status == 0 && user.confirming)}
+                        :if => lambda { |user| user.user_status = 0} #only check for password on account creation where user status = 0
   
   validates :password,  :presence => {:on => :update},
                         :confirmation => true,
                         :length => { :within => Devise.password_length,:on => :update },
-                        :if => lambda { |user| !user.password.nil? || (user.user_status == 0 && user.confirming)}
+                        :if => lambda { |user| !user.password.nil? || (user.user_status == -1 && user.confirming)}
+                        #only check password on update if password is filled in or user status = -1 and user is confirming
   
   validates :invite_code, :invite_code  => { :association => 'invite', :allow_nil => false },
                           :if => lambda { |user| user.user_status == 0 && user.confirming}

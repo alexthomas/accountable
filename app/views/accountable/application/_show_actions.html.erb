@@ -1,6 +1,0 @@
-<div class="inner-actions">		
-	<ul class="actions-list unstyled">
-		<li><%= link_to "Edit #{object.class.to_s}", send("edit_#{object.class.to_s.downcase}_path",object), :class => 'btn primary' %></li>
-		<li><%= link_to "All #{object.class.to_s}s", send("#{object.class.to_s.downcase}s_path"), :class => 'btn' %></li>
-	</ul>
-</div>
