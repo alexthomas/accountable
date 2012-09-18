@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
   private 
   
     def build_invite
-      self.build_invite(:invite_code =>"#{self.generate_invite_code}",:invitee_id => self.moa.owner.id,:invite_date => Time.now)
+      self.build_invite(:invite_code =>"#{self.generate_invite_code}",:invitee_id => self.moa.owner.id,:invite_date => Time.now) unless self.moa.nil?
     end
   
     def send_confirmation_email
