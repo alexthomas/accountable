@@ -42,7 +42,7 @@ module Accountable
       end
       
       def is_dirty?
-        object.index_status
+        self.index_status
       end
       
       def index_search_object
