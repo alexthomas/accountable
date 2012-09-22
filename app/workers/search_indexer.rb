@@ -11,9 +11,7 @@ class SearchIndexer
     Rails.logger.debug "logging search indexer worker create index object... #{object.inspect}"
     Sunspot.index( object )
     Sunspot.commit
-    object.index_count ||= 0
-    index_count = object.index_count + 1
-    object.update_attribute(:index_count,index_count)
+    object.update_attribute(:index_count,0) #set index status to clean after reindex
     
   end
   

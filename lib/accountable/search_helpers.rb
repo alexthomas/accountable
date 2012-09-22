@@ -37,7 +37,9 @@ module Accountable
       end
     
       def index_search_object
-        Resque.enqueue(SearchIndexer,self.class.name,self.id) if !self.index_count_changed?
+        #if we have a clean index status just returned from resque worker don't set index status to dirty
+        self.index_status = self.index_status == 0 && !self.index_status_changed? ? 1 : 0 
+        Resque.enqueue(SearchIndexer,self.class.name,self.id) unless self.index_status == 0
       end
     
     end
