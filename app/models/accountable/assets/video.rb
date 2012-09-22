@@ -1,8 +1,6 @@
 module Accountable
   class Video < Asset
     
-    attr_accessor   :asset_url
-    
     has_attached_file :attachment,
       :url => :attached_asset_url,
       :path => :attached_asset_path

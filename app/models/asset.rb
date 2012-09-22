@@ -2,7 +2,7 @@ class Asset < ActiveRecord::Base
   belongs_to :assetable, :polymorphic => true
   delegate :url, :to => :attachment
 
-  attr_accessible  :title, :description, :attachment, :attachment_file_name, :attachment_content_type, :attachment_file_size
+  attr_accessible  :title, :description, :attachment, :attachment_file_name, :attachment_content_type, :attachment_file_size,:asset_url
   attr_accessor   :asset_url
 
   validates :title, 
