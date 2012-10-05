@@ -1,5 +1,4 @@
-module Accountable
-  class Video < Asset
+class Audio < Asset
     
     has_attached_file :attachment,
       :url => :attached_asset_url,
@@ -9,6 +8,4 @@ module Accountable
 
     validates_presence_of :asset_remote_url, :if => :asset_url?, :message => 'video url is invalid or inaccessible'
 
-                                                      
-  end
 end

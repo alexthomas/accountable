@@ -8,6 +8,7 @@ class SearchIndexer
       Rails.logger.debug "logging search indexer worker failed to find object..."
       return
     end
+    Rails.logger.debug "our index status is #{object.index_status}"
     Rails.logger.debug "logging search indexer worker create index object... #{object.inspect}"
     Sunspot.index( object )
     Sunspot.commit

@@ -51,7 +51,7 @@ module Accountable
         #if we have a clean index status just returned from resque worker don't set index status to dirty
         #index_status = self.index_status == 0 && !self.index_status_changed? ? 1 : 0 
         Rails.logger.debug "our updated index status is ........ #{is_dirty?}"
-        Resque.enqueue(SearchIndexer,self.class.name,self.id) if is_dirty?
+        Resque.enqueue(SearchIndexer,self.class.name,self.id) if is_dirty? == 1
       end
     
     end
