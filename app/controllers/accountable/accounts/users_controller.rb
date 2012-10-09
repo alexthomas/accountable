@@ -20,7 +20,12 @@ module Accountable
       end
 
       def edit
-
+        #allow active users with permission (determined by cancan to edit users)
+        if current_user.user_status > 0
+          render("edit")
+        else
+          redirect_to('index')
+        end
       end
 
       def update

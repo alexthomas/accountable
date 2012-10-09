@@ -20,11 +20,11 @@ class Asset < ActiveRecord::Base
   protected
   
     def attached_asset_url
-      "/assets/:toa/:toi/:attachment/:id/:style/:basename.:extension"
+      "/assets/:toi/:toa/:id/:style/:basename.:extension"
     end
 
     def attached_asset_path
-      ":rails_root/public/assets/:toa/:toi/:attachment/:id/:style/:basename.:extension"
+      ":rails_root/public/assets/:toi/:toa/:id/:style/:basename.:extension"
     end
   
     def asset_url?
@@ -44,16 +44,12 @@ class Asset < ActiveRecord::Base
     end
   
     Paperclip.interpolates :toi  do |attachment, style|
-    
-      if defined? attachment.instance.assetable.profileable_type
-        return attachment.instance.assetable.profileable_type.downcase
-      else
-        return 'site'
-      end
+      return "#{attachment.instance.assetable.class.name.downcase}s"
     end
   
     Paperclip.interpolates :toa  do |attachment, style|
-      return attachment.instance.class.name.downcase
+      #type of asset - split on :: to get child asset types
+      return "#{attachment.instance.class.name.split("::").last.downcase}s"
     end
 
 end
