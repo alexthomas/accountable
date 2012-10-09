@@ -3,8 +3,10 @@ module Accountable
     class UsersController < AccountableController
       load_and_authorize_resource
       before_filter :is_confirmed?, :only => [:confirm]
+      before_filter :have_confirmation_code?, :only => [:confirm]
       before_filter :set_body_id
-      before_filter :set_profile_field_names, :only => ['new','edit','create','update']
+      before_filter :set_profile_field_names, :only => [:new,:edit,:create,:update]
+      
 
 
       def set_body_id
@@ -66,7 +68,7 @@ module Accountable
 
       def confirm
         @invite_code = params[:ic]
-        edit if @user.user_status == 0
+        edit if @user.user_status >= 0
       end
 
       def destroy
@@ -90,6 +92,13 @@ module Accountable
 
       def is_confirmed?
         redirect_to(@user) if @user.is_confirmed?
+      end
+      
+      def have_confirmation_code?
+        if !defined? params[:ic]
+          flash[:failure] = 'A confirmation code required to confirm a user'
+          redirect_to('index') 
+        end
       end
 
 
