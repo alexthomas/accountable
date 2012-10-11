@@ -1,5 +1,4 @@
-module Accountable
-  class User < ActiveRecord::Base
+class User < ActiveRecord::Base
     extend Accountable::Users::ProfileHelpers, Accountable::Users::AccessibleHelpers,Accountable::SearchHelpers
     has_many :assigned_roles, :dependent => :destroy
     has_many :roles, :through => :assigned_roles
@@ -117,6 +116,4 @@ module Accountable
       def secure_hash(string)
         Digest::SHA2.hexdigest(string)
       end
-    
-  end
 end

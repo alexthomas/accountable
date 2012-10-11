@@ -1,5 +1,4 @@
-module Accountable
-  class Profile < ActiveRecord::Base
+class Profile < ActiveRecord::Base
   
     belongs_to :profileable, :polymorphic => true
   
@@ -36,6 +35,4 @@ module Accountable
          :details => self.json_public_fields
         }
     end
-  
-  end
 end

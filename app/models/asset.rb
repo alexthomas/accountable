@@ -1,5 +1,4 @@
-module Accountable
-  class Asset < ActiveRecord::Base
+class Asset < ActiveRecord::Base
     belongs_to :assetable, :polymorphic => true
     delegate :url, :to => :attachment
 
@@ -53,5 +52,4 @@ module Accountable
         return "#{attachment.instance.class.name.split("::").last.downcase}s"
       end
 
-  end
 end

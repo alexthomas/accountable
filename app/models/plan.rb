@@ -1,5 +1,4 @@
-module Accountable
-  class Plan < ActiveRecord::Base
+class Plan < ActiveRecord::Base
   
     has_many :subscriptions, :class_name => 'Account',  :foreign_key => :plan_id
   
@@ -12,5 +11,4 @@ module Accountable
       plan = user.account.plan
       can_add = plan.max_users == 0 || plan.max_users >= user.account.members.size
     end
-  end
 end

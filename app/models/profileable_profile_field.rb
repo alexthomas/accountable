@@ -1,5 +1,4 @@
-module Accountable
-  class ProfileableProfileField < ActiveRecord::Base
+class ProfileableProfileField < ActiveRecord::Base
     scope :users, :conditions => { :profileable_type => 'User' }
   
     validates :profileable_type, :inclusion => { :in => ["User"] }
@@ -30,6 +29,4 @@ module Accountable
        end
    
       end
-    
-  end
 end

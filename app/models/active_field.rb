@@ -1,5 +1,4 @@
-module Accountable
-  class ActiveField < ActiveRecord::Base
+class ActiveField < ActiveRecord::Base
     belongs_to :profile
     belongs_to :profile_field
   
@@ -11,5 +10,5 @@ module Accountable
          :value => self.value
         }
     end
-  end
+
 end
