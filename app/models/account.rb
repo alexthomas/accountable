@@ -14,11 +14,12 @@ class Account < ActiveRecord::Base
     attr_accessor :confirmation_code,:confirming
     attr_accessible :owner_attributes,:account_status,:confirmation_code,:confirming
   
+    before_create :build_invite
     before_save  :confirm_account
     after_create :send_confirmation_email
   
     def send_confirmation_email
-      logger.debug "enquing account confirmation email #{self.account_status}"
+      logger.debug "enquing account confirmation email #{@account_status}"
       Resque.enqueue(Emailer, self.owner.class.name,self.owner.id,'confirm_account') if self.account_status !=1
     end
   
@@ -29,6 +30,10 @@ class Account < ActiveRecord::Base
         self.confirmation_invite.activated = true
       end
     
+    end
+    
+    def build_invite
+      self.build_confirmation_invite(:invite_code =>"#{self.owner.generate_invite_code}",:invite_date => Time.now)
     end
 
 end

@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
     delegate :address, :to => :profile
   
     before_save :confirm_user
-    before_create :build_invite
+    before_create :generate_invite
     after_create :send_confirmation_email
     def is_confirmed?
       self.user_status == 1
@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
 
     private 
   
-      def build_invite
+      def generate_invite
         self.build_invite(:invite_code =>"#{self.generate_invite_code}",:invitee_id => self.moa.owner.id,:invite_date => Time.now) unless self.moa.nil?
       end
   

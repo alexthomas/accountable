@@ -37,7 +37,7 @@ module Accountable
           #set_profile_field_names
           session[:form_errors] = generate_errors([@user])
           @success = false;
-          @user.user_status > 0 ? render("edit") : render('confirm')
+          @user.user_status < 0 && !current_user ? render("confirm") : render('edit')
 
         end
 
@@ -63,8 +63,7 @@ module Accountable
       end
 
       def confirm
-        @invite_code = params[:ic]
-        edit if @user.user_status >= 0
+        edit if @user.user_status > 0
       end
 
       def destroy
@@ -91,10 +90,13 @@ module Accountable
       end
       
       def have_confirmation_code?
-        if !defined? params[:ic]
+        @invite_code = params[:ic] if defined?(params[:ic])
+        @invite_code = session[:ic] if @invite_code.nil? && session[:ic]
+        if @invite_code.nil?
           flash[:failure] = 'A confirmation code required to confirm a user'
           redirect_to('index') 
         end
+        
       end
 
 
