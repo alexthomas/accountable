@@ -13,7 +13,7 @@ module Accountable
     end
   
     def show
-      redirect_to dashboard_url
+      #redirect_to dashboard_url
     end
   
     def new
