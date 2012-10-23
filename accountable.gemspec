@@ -26,7 +26,9 @@ Gem::Specification.new do |s|
   s.add_dependency "resque", "~> 1.0"
   s.add_dependency "will_paginate"
   s.add_dependency "twitter"
-  
+  s.add_dependency "ruby-mp3info"
   s.add_development_dependency "sqlite3"
+  
+  
 
 end

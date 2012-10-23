@@ -32,8 +32,8 @@ class Asset < ActiveRecord::Base
       end
   
       def download_remote_asset
-        self.image = do_download_remote_image
-        self.image_remote_url = image_url
+        self.attachment = do_download_remote_image
+        self.attachment_remote_url = image_url
       end
 
       def do_download_remote_asset

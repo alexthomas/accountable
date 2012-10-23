@@ -4,6 +4,7 @@ require 'resque'
 require 'will_paginate'
 require 'open-uri'
 require 'paperclip'
+require "mp3info"
 
 require "accountable/engine"
 
