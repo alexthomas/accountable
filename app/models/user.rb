@@ -26,14 +26,18 @@ class User < ActiveRecord::Base
     accepts_nested_attributes_for :profile,   :allow_destroy => true
     accepts_nested_attributes_for :roles,:groups
   
-    validates_uniqueness_of :email, :case_sensitive => false, :allow_blank => true, :if => :email_changed? 
-    validates_format_of :email, :with => Devise.email_regexp, :allow_blank => true, :if => :email_changed? 
-  
+    
+    
+    validates :email,     :presence => true,
+                          :uniqueness => { :case_sensitive => true },
+                          :format => { :with => Devise.email_regexp }
+    
+    #validates_format_of :email, :with => Devise.email_regexp, :allow_blank => false, :if => :email_changed?                      
     validates :password,  :presence => {:on => :create},
                           :confirmation => true,
                           :length => { :within => Devise.password_length,:on => :create },
                           #:if => lambda { |user| user.user_status > 0 || (user.user_status == 0 && user.confirming)}
-                          :if => lambda { |user| user.user_status = 0} #only check for password on account creation where user status = 0
+                          :if => lambda { |user| user.user_status == 0} #only check for password on account creation where user status = 0
   
     validates :password,  :presence => {:on => :update},
                           :confirmation => true,
