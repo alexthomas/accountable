@@ -2,7 +2,7 @@ class Asset < ActiveRecord::Base
     belongs_to :assetable, :polymorphic => true
     delegate :url, :to => :attachment
 
-    attr_accessible  :title, :description, :attachment, :attachment_file_name, :attachment_content_type, :attachment_file_size,:asset_url
+    attr_accessible  :title, :description, :attachment, :attachment_file_name, :attachment_content_type, :attachment_file_size,:asset_url,:asset_remote_url,:metadata
     attr_accessor   :asset_url
 
     validates :title, 
@@ -13,7 +13,7 @@ class Asset < ActiveRecord::Base
 
     before_validation :download_remote_asset, :if => :asset_url?
 
-    validates_presence_of :image_remote_asset, :if => :asset_url?, :message => 'asset url is invalid or inaccessible'                      
+    validates_presence_of :asset_remote_url, :if => :asset_url?, :message => 'asset url is invalid or inaccessible'                      
                           
 
 
@@ -33,14 +33,14 @@ class Asset < ActiveRecord::Base
   
       def download_remote_asset
         self.attachment = do_download_remote_asset
-        self.attachment_remote_url = image_url
+        self.asset_remote_url = asset_url
       end
 
       def do_download_remote_asset
-        io = open(URI.parse(image_url))
+        io = open(URI.parse(asset_url))
         def io.original_filename; base_uri.path.split('/').last; end
         io.original_filename.blank? ? nil : io
-      rescue # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+      #rescue # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
       end
   
       Paperclip.interpolates :toi  do |attachment, style|
