@@ -69,7 +69,7 @@ class AccountableCreateUsersTables < ActiveRecord::Migration
       t.string   :attachment_file_name
       t.string   :attachment_content_type
       t.integer  :attachment_file_size
-      t.integer  :asset_remote_url
+      t.string   :asset_remote_url
       t.text     :metadata
       t.datetime :attachment_updated_at
       t.timestamps
