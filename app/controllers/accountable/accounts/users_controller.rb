@@ -72,6 +72,7 @@ module Accountable
         @destroy_is_current = (@user.id == current_user.id) ? true : false
         @user.destroy unless @user == nil
         sign_out if @destroy_is_current
+        redirect_to dashboard_url
       end
 
       private 
