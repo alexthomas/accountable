@@ -66,6 +66,10 @@ class User < ActiveRecord::Base
       secure_hash("#{Time.now.utc}--#{self.name}")[0..15]
     end
   
+    def has_admin_privileges?
+      role?(:account_admin) || role?(:god)
+    end
+    
     def role_symbols
       role_symbols ||= (roles || []).map {|r| r.name.underscore.to_sym}
     end
