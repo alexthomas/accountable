@@ -7,8 +7,8 @@ require "accountable/version"
 Gem::Specification.new do |s|
   s.name        = "accountable"
   s.version     = Accountable::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
+  s.authors     = ["Alex Thomas"]
+  s.email       = ["alex@gonetomorrow.co.uk"]
   s.homepage    = "TODO"
   s.summary     = "TODO: Summary of Accountable."
   s.description = "TODO: Description of Accountable."
@@ -16,9 +16,9 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  # s.add_dependency "rails"
+    s.add_dependency "rails"
   #   s.add_dependency "jquery-rails"
-  #   s.add_dependency "devise", ">= 2.1.0"
+    s.add_dependency "devise", ">= 2.1.0"
     s.add_dependency "cancan", ">= 1.6.7"
   # 
     s.add_dependency 'paperclip'
