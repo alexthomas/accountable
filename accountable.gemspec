@@ -18,11 +18,11 @@ Gem::Specification.new do |s|
 
   # s.add_dependency "rails"
   #   s.add_dependency "jquery-rails"
-    s.add_dependency "devise", ">= 2.1.0"
-    s.add_dependency "cancan", ">= 1.6.7"
+  #   s.add_dependency "devise", ">= 2.1.0"
+  #   s.add_dependency "cancan", ">= 1.6.7"
   # 
-    s.add_dependency 'paperclip'
-    s.add_dependency 'uglifier', '>= 1.3.0'
+    # s.add_dependency 'paperclip'
+    #     s.add_dependency 'uglifier', '>= 1.3.0'
     s.add_dependency "resque", "~> 1.0"
     s.add_dependency "will_paginate"
     s.add_dependency "twitter"
