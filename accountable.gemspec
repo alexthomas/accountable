@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
   #   s.add_dependency "jquery-rails"
     s.add_dependency "devise", "3.0.0.rc"
     s.add_dependency "cancan", ">= 1.6.7"
-  # 
     s.add_dependency 'paperclip'
     s.add_dependency 'uglifier', '>= 1.3.0'
     s.add_dependency "resque", "~> 1.0"
