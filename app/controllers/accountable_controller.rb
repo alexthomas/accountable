@@ -1,9 +1,7 @@
 class AccountableController < Accountable.parent_controller.constantize
     
   protect_from_forgery
-  
   def generate_errors(models)
-
   	errors = Array.new 
 
     models.each do | model |
