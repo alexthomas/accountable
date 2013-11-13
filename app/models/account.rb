@@ -12,7 +12,6 @@ class Account < ActiveRecord::Base
                             :if => lambda { |account| account.account_status == -1 && account.confirming}
   
     attr_accessor :confirmation_code,:confirming
-    attr_accessible :owner_attributes,:account_status,:confirmation_code,:confirming
   
     before_create :build_invite
     before_save  :confirm_account

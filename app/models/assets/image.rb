@@ -1,7 +1,7 @@
 require 'open-uri'
 class Image < Asset
 
-  attr_accessible :attachment
+  # attr_accessible :attachment
 
   has_attached_file   :attachment,
       :styles => {

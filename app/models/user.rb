@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
     attr_accessor :invite_code, :confirming
     # Setup accessible (or protected) attributes for your model
     attr_accessible :email, :password, :password_confirmation, :remember_me
-    # attr_accessible :title, :body
-    attr_accessible :name, :profile_attributes,:role_attributes,:group_attributes,:user_status,:invite_code,:confirming,:invite_attributes
+
+    #attr_accessible :name, :profile_attributes,:role_attributes,:group_attributes,:user_status,:invite_code,:confirming,:invite_attributes
 
     accepts_nested_attributes_for :profile,   :allow_destroy => true
     accepts_nested_attributes_for :roles,:groups

@@ -23,7 +23,7 @@ module Accountable
     end
   
     def create
-      @account = Account.new params[:account]
+      @account = Account.new account_params
       @account.plan = @plan
 
       @account.owner.assigned_roles.build :role_id => 3
@@ -90,6 +90,16 @@ module Accountable
       
       def is_confirmed?
         redirect_to(@account) if @account.is_confirmed?
+      end
+      
+      def account_params
+        params.require(:account).permit(:owner_attributes => [:name, :profile_attributes => [:name,
+          :photo_attributes =>[:title, :description, :attachment, :attachment_file_name, :attachment_content_type, 
+          :attachment_file_size,:asset_url,:asset_remote_url,:metadata,:attachment],
+          :active_fields_attributes => [:profile_field_id,:value,:publik]],
+          :role_attributes => [:name],:group_attributes => [:name,:description],:user_status,
+          :invite_code,:confirming,:invite_attributes => [:invitee_id,:invite_code, :activated, :invite_date, :activated_date]], 
+          :account_status,:confirmation_code,:confirming)
       end
   end
 end

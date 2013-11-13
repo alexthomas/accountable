@@ -5,7 +5,7 @@ class ProfileableProfileField < ActiveRecord::Base
   
     after_destroy :update_active_fields
   
-    attr_accessible :publik,:required,:profileable_type,:profile_field_id
+    # attr_accessible :publik,:required,:profileable_type,:profile_field_id
   
     def self.missing_profile_fields profileable_type
       profile_fields = ProfileableProfileField.find(:all, :conditions => ['profileable_type = ?',profileable_type])
