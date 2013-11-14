@@ -1,6 +1,17 @@
 module Accountable
   module Generators
     module OrmHelpers
+      
+      def model_contents
+                buffer = <<-CONTENT
+          # Include default devise modules. Others available are:
+          # :confirmable, :lockable, :timeoutable and :omniauthable
+          devise :database_authenticatable, :registerable,
+                 :recoverable, :rememberable, :trackable, :validatable
+
+        CONTENT
+      end
+      
       def model_exists?
         File.exists?(File.join(destination_root, model_path))
       end

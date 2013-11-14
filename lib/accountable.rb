@@ -1,10 +1,11 @@
 require 'cancan'
 require 'jquery-rails'
-require 'resque'
+# require 'resque'
 require 'will_paginate'
 require 'open-uri'
 require 'paperclip'
 require "mp3info"
+require "devise"
 
 require "accountable/engine"
 
