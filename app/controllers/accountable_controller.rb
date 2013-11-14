@@ -1,6 +1,24 @@
 class AccountableController < Accountable.parent_controller.constantize
     
   protect_from_forgery
+  
+  before_filter do
+    filter_params_method = "#{resource_name}_params"
+    params[resource_name.to_sym] = send(filter_params_method) if respond_to?(filter_params_method, true)  
+  end
+  
+  def restrict_params_to(*permitted_params)
+    restricted_params = {}
+    if params && params[resource_name.to_sym].kind_of?(Hash)
+      restricted_params = params.require(resource_name.to_sym).permit(permitted_params)
+    end
+    restricted_params
+  end
+  
+  def resource_name
+    controller_name.classify.downcase
+  end
+  
   def generate_errors(models)
   	errors = Array.new 
 

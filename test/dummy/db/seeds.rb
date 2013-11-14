@@ -1,0 +1,2 @@
+Plan.create([{id: 1,name: 'Friends and Family',description: 'Unlimited private plan',max_users: 0,max_groups: 0,max_events: 0,max_active_events: 0,max_event_days: 0,price: 0,private: true}]) if !Plan.exists?(1)
+Role.create([{id: 1,name: 'member'},{id: 2,name: 'account_admin'},{id: 3,name: 'god'}]) if Role.count == 0

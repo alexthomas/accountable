@@ -26,7 +26,7 @@ module Accountable
       end
 
       def profile_fields
-        pp_fields ||= ProfileableProfileField.find(:all,:conditions =>{:profileable_type => class_name})
+        pp_fields ||= ProfileableProfileField.where(profileable_type: class_name)
         pp_fields
       end
 

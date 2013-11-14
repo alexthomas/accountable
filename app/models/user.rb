@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
   
       def send_confirmation_email
         logger.debug "enquing confirmation email #{self.user_status}"
-        Resque.enqueue(Emailer, self.class.name,self.id,'complete_signup') if (self.user_status <0)
+        # Resque.enqueue(Emailer, self.class.name,self.id,'complete_signup') if (self.user_status <0)
       end
     
       def confirm_user

@@ -19,7 +19,7 @@ class Account < ActiveRecord::Base
   
     def send_confirmation_email
       logger.debug "enquing account confirmation email #{@account_status}"
-      Resque.enqueue(Emailer, self.owner.class.name,self.owner.id,'confirm_account') if self.account_status !=1
+      # Resque.enqueue(Emailer, self.owner.class.name,self.owner.id,'confirm_account') if self.account_status !=1
     end
   
     def confirm_account
