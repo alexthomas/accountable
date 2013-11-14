@@ -1,16 +1,14 @@
-class AccountableCreateUsersTables < ActiveRecord::Migration
+class AccountableCreate<%= table_name.camelize%>Tables < ActiveRecord::Migration
   def change
  
     create_table :roles do |t|
       t.string :name
-
       t.timestamps
     end
     
     create_table :assigned_roles do |t|
-      t.integer :user_id
+      t.integer :<%= name%>_id
       t.integer :role_id
-
       t.timestamps
     end
     
@@ -23,7 +21,7 @@ class AccountableCreateUsersTables < ActiveRecord::Migration
     end
     
     create_table :assigned_groups do | t |
-     t.references :user
+     t.references :<%= name%>
      t.references :group
     end
     

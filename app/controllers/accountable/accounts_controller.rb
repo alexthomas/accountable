@@ -84,7 +84,7 @@ module Accountable
         rescue ActiveRecord::RecordNotFound
         
           session[:errors] = "Sorry could not find Plan"
-          redirect_to signup_plans_url
+          redirect_to plans_path
         end
       
       end

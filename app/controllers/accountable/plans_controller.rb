@@ -1,5 +1,4 @@
 module Accountable
-  module Accounts 
     class PlansController < AccountableController
 
  
@@ -17,6 +16,4 @@ module Accountable
         end
         
     end
-    
-  end
 end
