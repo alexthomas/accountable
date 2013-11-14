@@ -18,8 +18,6 @@ module Accountable
 
       
       def add_accountable_routes
-        options.routes? ? say("we have routes") : say("we have no routes")
-        route "resources :accounts" if arguments.routes?
         
         account_routes = <<-ROUTE
         scope module: 'accountable' do
