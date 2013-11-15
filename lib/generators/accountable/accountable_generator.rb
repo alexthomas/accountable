@@ -31,6 +31,7 @@ module Accountable
       def add_devise_routes
         devise_route = 
 <<-ROUTE
+devise_for :#{name.pluralize},:module => "devise", :only => []
 devise_scope :#{class_name} do
   get "sign_in", :to => "devise/sessions#new", :as => 'new_#{name}_session'
   post "sign_in", :to => "devise/sessions#create", :as => '#{name}_session'
