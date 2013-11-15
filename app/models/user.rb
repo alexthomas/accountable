@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
 
     attr_accessor :invite_code, :confirming
     # Setup accessible (or protected) attributes for your model
-    attr_accessible :email, :password, :password_confirmation, :remember_me
-    # attr_accessible :title, :body
-    attr_accessible :name, :profile_attributes,:role_attributes,:group_attributes,:user_status,:invite_code,:confirming,:invite_attributes
+    # attr_accessible :email, :password, :password_confirmation, :remember_me
+
+    #attr_accessible :name, :profile_attributes,:role_attributes,:group_attributes,:user_status,:invite_code,:confirming,:invite_attributes
 
     accepts_nested_attributes_for :profile,   :allow_destroy => true
     accepts_nested_attributes_for :roles,:groups
@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
     before_save :confirm_user
     before_create :generate_invite
     after_create :send_confirmation_email
+    
     def is_confirmed?
       self.user_status == 1
     end
@@ -109,7 +110,7 @@ class User < ActiveRecord::Base
   
       def send_confirmation_email
         logger.debug "enquing confirmation email #{self.user_status}"
-        Resque.enqueue(Emailer, self.class.name,self.id,'complete_signup') if (self.user_status <0)
+        # Resque.enqueue(Emailer, self.class.name,self.id,'complete_signup') if (self.user_status <0)
       end
     
       def confirm_user

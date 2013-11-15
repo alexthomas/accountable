@@ -12,7 +12,6 @@ class Account < ActiveRecord::Base
                             :if => lambda { |account| account.account_status == -1 && account.confirming}
   
     attr_accessor :confirmation_code,:confirming
-    attr_accessible :owner_attributes,:account_status,:confirmation_code,:confirming
   
     before_create :build_invite
     before_save  :confirm_account
@@ -20,7 +19,7 @@ class Account < ActiveRecord::Base
   
     def send_confirmation_email
       logger.debug "enquing account confirmation email #{@account_status}"
-      Resque.enqueue(Emailer, self.owner.class.name,self.owner.id,'confirm_account') if self.account_status !=1
+      # Resque.enqueue(Emailer, self.owner.class.name,self.owner.id,'confirm_account') if self.account_status !=1
     end
   
     def confirm_account

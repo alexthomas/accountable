@@ -1,0 +1,21 @@
+<section id="flash-message">
+	<% flash.each do |key,value| %>
+	<div class="flash alert-message <%= key %>"><%= value %></div>
+	<% end %>
+</section>
+
+<% errors = session[:form_errors] %>
+<% if !errors.nil?%>
+	<% if errors.any? %>
+	  <section id="error-explanation" class="alert-message block-message error">
+	    <h2><%= pluralize(errors.count, "error") %> prohibited this user from being saved: </h2>
+	    <p>There were problems with the following fields: </p>
+	    <ul>
+	    <% errors.each do |msg| %>
+	      <li><%= msg %></li>
+		<% end %>
+	    </ul>
+	  </section>
+	<% end %>
+	<% session[:form_errors] = nil %>
+<% end %>

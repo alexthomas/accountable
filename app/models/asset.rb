@@ -2,7 +2,7 @@ class Asset < ActiveRecord::Base
     belongs_to :assetable, :polymorphic => true
     delegate :url, :to => :attachment
 
-    attr_accessible  :title, :description, :attachment, :attachment_file_name, :attachment_content_type, :attachment_file_size,:asset_url,:asset_remote_url,:metadata
+    # attr_accessible  :title, :description, :attachment, :attachment_file_name, :attachment_content_type, :attachment_file_size,:asset_url,:asset_remote_url,:metadata
     attr_accessor   :asset_url
 
     validates :title, 
@@ -16,9 +16,8 @@ class Asset < ActiveRecord::Base
     validates_presence_of :asset_remote_url, :if => :asset_url?, :message => 'asset url is invalid or inaccessible'                      
                           
 
-
     protected
-  
+      
       def attached_asset_url
         "/assets/:toi/:toa/:id/:style/:basename.:extension"
       end
