@@ -1,3 +1,3 @@
 module Accountable
-  VERSION = "1.0.1"
+  VERSION = "4.0.1"
 end
