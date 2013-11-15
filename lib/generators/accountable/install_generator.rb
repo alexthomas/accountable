@@ -26,6 +26,9 @@ module Accountable
          template "accountable_config.rb", "config/initializers/accountable.rb"
       end
       
+      def install_devise
+        generate 'devise:install'
+      end
       def generate_accountable
         say(options.inspect)
         invoke "accountable", [@model_name,options]
