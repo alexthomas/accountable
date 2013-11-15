@@ -16,9 +16,8 @@ class Asset < ActiveRecord::Base
     validates_presence_of :asset_remote_url, :if => :asset_url?, :message => 'asset url is invalid or inaccessible'                      
                           
 
-
     protected
-  
+      
       def attached_asset_url
         "/assets/:toi/:toa/:id/:style/:basename.:extension"
       end

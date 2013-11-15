@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
     before_save :confirm_user
     before_create :generate_invite
     after_create :send_confirmation_email
+    
     def is_confirmed?
       self.user_status == 1
     end
