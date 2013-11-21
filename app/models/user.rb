@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
 
     accepts_nested_attributes_for :profile,   :allow_destroy => true
     accepts_nested_attributes_for :roles,:groups
+    accepts_nested_attributes_for :moa
   
     
     
@@ -105,7 +106,7 @@ class User < ActiveRecord::Base
     private 
   
       def generate_invite
-        self.build_invite(:invite_code =>"#{self.generate_invite_code}",:invitee_id => self.moa.owner.id,:invite_date => Time.now) unless self.moa.nil?
+        self.build_invite(:invite_code =>"#{self.generate_invite_code}",:invitee_id => self.moa.owner.id,:invite_date => Time.now) unless self.moa.nil? || self.moa.new_record?  
       end
   
       def send_confirmation_email

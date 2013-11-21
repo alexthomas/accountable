@@ -18,7 +18,7 @@ module Accountable
     end
   
     def new
-      @account = Account.new
+      # @account = Account.new
       logger.debug "inspecting profile fields names #{@pf_names.inspect}"
       @account.plan = @plan
       @account.build_owner
@@ -103,10 +103,10 @@ module Accountable
       
       def account_params
         restrict_params_to(:account_status,:confirmation_code,:confirming, owner_attributes: [:name, :email, :password, :password_confirmation, :remember_me,:user_status,
-          :invite_code,:confirming,profile_attributes: [:name, photo_attributes: [:title, :description, :attachment, 
-          :attachment_file_name, :attachment_content_type, :attachment_file_size,:asset_url,:asset_remote_url,:metadata,:attachment],
-          active_fields_attributes: [:profile_field_id,:value,:publik]], role_attributes: [:name], 
-          group_attributes: [:name,:description],invite_attributes: [:invitee_id,:invite_code, :activated, :invite_date, :activated_date]])
+                          :invite_code,:confirming,profile_attributes: [:name, photo_attributes: [:title, :description, :attachment, 
+                          :attachment_file_name, :attachment_content_type, :attachment_file_size,:asset_url,:asset_remote_url,:metadata,:attachment],
+                          active_fields_attributes: [:profile_field_id,:value,:publik]], role_attributes: [:name], 
+                          group_attributes: [:name,:description],invite_attributes: [:invitee_id,:invite_code, :activated, :invite_date, :activated_date]])
       end
   end
 end

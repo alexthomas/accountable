@@ -8,7 +8,7 @@ class AccountableController < Accountable.parent_controller.constantize
   end
   
   def restrict_params_to(*permitted_params)
-    restricted_params = {}
+    restricted_params = params[resource_name.to_sym]
     if params && params[resource_name.to_sym].kind_of?(Hash)
       restricted_params = params.require(resource_name.to_sym).permit(permitted_params)
     end
