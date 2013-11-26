@@ -14,18 +14,23 @@ class Asset < ActiveRecord::Base
     before_validation :download_remote_asset, :if => :asset_url?
 
     validates_presence_of :asset_remote_url, :if => :asset_url?, :message => 'asset url is invalid or inaccessible'                      
-                          
+    
+    def generate_local_asset(path,filename)
+      self.attachment = do_generate_local_asset(path,filename)
+    end                   
 
     protected
       
       def attached_asset_url
         "/assets/:toi/:toa/:id/:style/:basename.:extension"
+        # "/assets/:id/:style/:basename.:extension"
       end
-
+         
       def attached_asset_path
         ":rails_root/public/assets/:toi/:toa/:id/:style/:basename.:extension"
+        # ":rails_root/public/assets/:id/:style/:basename.:extension"
       end
-  
+     
       def asset_url?
         !self.asset_url.blank?
       end
@@ -34,7 +39,13 @@ class Asset < ActiveRecord::Base
         self.attachment = do_download_remote_asset
         self.asset_remote_url = asset_url
       end
-
+      
+      def do_generate_local_asset(path,original_filename)
+        io = open(path)
+        def io.original_filename; original_filename; end
+        io.original_filename.blank? ? nil : io
+      end
+      
       def do_download_remote_asset
         io = open(URI.parse(asset_url))
         def io.original_filename; base_uri.path.split('/').last; end
@@ -52,3 +63,16 @@ class Asset < ActiveRecord::Base
       end
 
 end
+
+# class LocalAttachment
+#   attr_accessor :io
+#   
+#   def initialize(path,original_filename,content_type)
+#     io = open(path)
+#     def io.original_filename; original_filename; end
+#     def io.content_type; content_type; end
+#     io.original_filename.blank? ? nil : io
+#   end
+#     
+#   
+# end
