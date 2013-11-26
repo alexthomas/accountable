@@ -59,7 +59,7 @@ class Asset < ActiveRecord::Base
   
       Paperclip.interpolates :toa  do |attachment, style|
         #type of asset - split on :: to get child asset types
-        return "#{attachment.instance.class.name.split("::").last.downcase}s"
+        return "#{attachment.instance.class.name.split("::").last.downcase.pluralize}"
       end
 
 end
