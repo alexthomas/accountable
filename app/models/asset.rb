@@ -15,8 +15,8 @@ class Asset < ActiveRecord::Base
 
     validates_presence_of :asset_remote_url, :if => :asset_url?, :message => 'asset url is invalid or inaccessible'                      
     
-    def generate_local_asset(path,filename)
-      self.attachment = do_generate_local_asset(path,filename)
+    def generate_local_asset(path)
+      self.attachment = do_generate_local_asset(path)
     end                   
 
     protected
@@ -40,9 +40,10 @@ class Asset < ActiveRecord::Base
         self.asset_remote_url = asset_url
       end
       
-      def do_generate_local_asset(path,original_filename)
+      def do_generate_local_asset(path)
+        Rails.logger.debug "generating local asset from path : #{path}"
         io = open(path)
-        def io.original_filename; original_filename; end
+        def io.original_filename; path.split('/').last; end
         io.original_filename.blank? ? nil : io
       end
       
@@ -64,15 +65,4 @@ class Asset < ActiveRecord::Base
 
 end
 
-# class LocalAttachment
-#   attr_accessor :io
-#   
-#   def initialize(path,original_filename,content_type)
-#     io = open(path)
-#     def io.original_filename; original_filename; end
-#     def io.content_type; content_type; end
-#     io.original_filename.blank? ? nil : io
-#   end
-#     
-#   
-# end
+
