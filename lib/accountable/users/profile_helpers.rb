@@ -42,12 +42,15 @@ module Accountable
   
       module InstanceMethods
     
-        def initialize(*options)
+        def initialize(options = {})
           super
-          self.build_profile unless self.profile
-          self.build_profile_fields
-          logger.debug "initialising profile object #{self.profile.inspect}"
-          self.profile.build_photo unless self.profile.photo
+          logger.debug "the options in init profile are #{options.inspect}"
+          if options.empty?
+            self.build_profile unless self.profile
+            self.build_profile_fields
+            logger.debug "initialising profile object #{self.profile.inspect}"
+            self.profile.build_photo unless self.profile.photo
+          end
         end
       
         def build_profile_fields
