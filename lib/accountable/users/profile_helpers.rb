@@ -49,8 +49,8 @@ module Accountable
             self.build_profile unless self.profile
             self.build_profile_fields
             logger.debug "initialising profile object #{self.profile.inspect}"
-            self.profile.build_photo unless self.profile.photo
           end
+          self.profile.build_photo if self.profile.photo.nil? && !options.has_key?(:photo_attributes)
         end
       
         def build_profile_fields
