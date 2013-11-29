@@ -55,7 +55,7 @@ class Asset < ActiveRecord::Base
       end
   
       Paperclip.interpolates :toi  do |attachment, style|
-        return "#{attachment.instance.assetable.class.name.downcase}s"
+        return "#{attachment.instance.assetable.class.name.downcase.pluralize}"
       end
   
       Paperclip.interpolates :toa  do |attachment, style|
