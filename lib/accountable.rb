@@ -25,6 +25,7 @@ module Accountable
   
   require "validators/invite_code_validator"
   require "accountable/models"
+  require "accountable/models/creatable"
   require "accountable/search_helpers"
   require "accountable/users/accessible_helpers"
   require "accountable/users/profile_helpers"
