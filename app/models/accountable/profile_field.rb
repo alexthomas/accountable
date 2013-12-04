@@ -1,4 +1,4 @@
-class ProfileField < ActiveRecord::Base
+class Accountable::ProfileField < ActiveRecord::Base
     has_many :active_fields, :dependent => :destroy
     has_many :profiles, :through => :active_fields
   

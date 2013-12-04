@@ -1,4 +1,4 @@
-class Audio < Asset
+class Audio < Accountable::Asset
     
     has_attached_file :attachment,
       :url => :attached_asset_url,

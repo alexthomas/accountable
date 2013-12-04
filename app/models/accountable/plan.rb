@@ -1,4 +1,4 @@
-class Plan < ActiveRecord::Base
+class Accountable::Plan < ActiveRecord::Base
   
     has_many :subscriptions, :class_name => 'Account',  :foreign_key => :plan_id
   

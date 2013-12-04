@@ -1,4 +1,4 @@
-class Pdf < Asset
+class Pdf < Accountable::Asset
     
     has_attached_file :attachment,
       

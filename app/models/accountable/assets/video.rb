@@ -1,4 +1,4 @@
-class Video < Asset
+class Video < Accountable::Asset
     
     has_attached_file :attachment,
       :url => :attached_asset_url,

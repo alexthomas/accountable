@@ -1,4 +1,4 @@
-class ProfileableProfileField < ActiveRecord::Base
+class Accountable::ProfileableProfileField < ActiveRecord::Base
     scope :users, -> { where(:profileable_type => 'User') }
   
     validates :profileable_type, :inclusion => { :in => ["User"] }

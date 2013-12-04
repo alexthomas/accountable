@@ -1,4 +1,4 @@
-class AssignedRole < ActiveRecord::Base
+class Accountable::AssignedRole < ActiveRecord::Base
     belongs_to :user
     belongs_to :role
   

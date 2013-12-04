@@ -1,4 +1,4 @@
-class Profile < ActiveRecord::Base
+class Accountable::Profile < ActiveRecord::Base
   
     belongs_to :profileable, :polymorphic => true
   

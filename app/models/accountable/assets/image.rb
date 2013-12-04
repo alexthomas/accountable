@@ -1,5 +1,5 @@
 require 'open-uri'
-class Image < Asset
+class Image < Accountable::Asset
 
   # attr_accessible :attachment
 

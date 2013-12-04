@@ -1,4 +1,4 @@
-class Asset < ActiveRecord::Base
+class Accountable::Asset < ActiveRecord::Base
     belongs_to :assetable, :polymorphic => true
     delegate :url, :to => :attachment
 

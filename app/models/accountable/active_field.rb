@@ -1,4 +1,4 @@
-class ActiveField < ActiveRecord::Base
+class Accountable::ActiveField < ActiveRecord::Base
     belongs_to :profile
     belongs_to :profile_field
   

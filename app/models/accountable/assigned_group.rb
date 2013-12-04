@@ -1,4 +1,4 @@
-class AssignedGroup < ActiveRecord::Base
+class Accountable::AssignedGroup < ActiveRecord::Base
     belongs_to :user
     belongs_to :group
   
