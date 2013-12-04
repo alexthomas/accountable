@@ -3,7 +3,7 @@ module Accountable
     module Creatable
       extend ActiveSupport::Concern
       included do
-        # extend Accountable::Users::ProfileHelpers, Accountable::Users::AccessibleHelpers,Accountable::SearchHelpers                    
+        extend Accountable::Users::ProfileHelpers, Accountable::Users::AccessibleHelpers,Accountable::SearchHelpers                    
         has_many :assigned_roles, :dependent => :destroy, :class_name => "Accountable::AssignedRole"
         has_many :roles, :through => :assigned_roles, :class_name => "Accountable::Role"
 
