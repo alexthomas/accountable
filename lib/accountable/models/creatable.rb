@@ -5,7 +5,7 @@ module Accountable
       included do
         # extend Accountable::Users::ProfileHelpers, Accountable::Users::AccessibleHelpers,Accountable::SearchHelpers                    
         has_many :assigned_roles, :dependent => :destroy, :class_name => "Accountable::AssignedRole"
-        has_many :roles, :through => :assigned_roles, :class_name => "Accountable::Roles"
+        has_many :roles, :through => :assigned_roles, :class_name => "Accountable::Role"
 
         has_many :assigned_groups, :dependent => :destroy, :class_name => "Accountable::AssignedGroup"
         has_many :groups, :through => :assigned_groups, :class_name => "Accountable::Group"
