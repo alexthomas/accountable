@@ -45,7 +45,7 @@ module Accountable
         def initialize(options = {})
           super
           logger.debug "the options in init profile are #{options.inspect}"
-          if options.empty?
+          if !options.has_key?(:profile_attributes)
             self.build_profile unless self.profile
             self.build_profile_fields
             logger.debug "initialising profile object #{self.profile.inspect}"
