@@ -1,11 +1,13 @@
-<%= f.hidden_field :profile_field_id %>
+<div class="form-row">
+<%= f.input :profile_field_id, :as => :hidden %>
+</div>
 <% field_id = pf_names.fetch(f.object.profile_field_id).downcase.strip.tr(' ','-')%>
-<div id="<%=field_id%>">
-	<%= f.label pf_names.fetch(f.object.profile_field_id) %>
-	<% pf = ProfileField.find f.object.profile_field_id %>
-	<% field_type = pf.input_type %>
-	<div class="input">	
-	<%= f.send field_type, :value, :rows => 6%>
-	</div>
-	<%= f.hidden_field :publik%>
+<% active_label = pf_names.fetch(f.object.profile_field_id) %>
+<% pf = Accountable::ProfileField.find f.object.profile_field_id %>
+<% field_type = pf.input_type %>
+
+
+<%= f.input :value ,:as => field_type, :label => active_label, :wrapper_html => { :class => 'form-item long' }, :label_html => { :class => 'form-label'}, :input_html => { :size => 255 } %>
+<div class="form-row">
+<%= f.input :publik, :as => :hidden %>
 </div>

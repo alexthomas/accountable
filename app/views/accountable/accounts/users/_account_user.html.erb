@@ -1,16 +1,19 @@
 
-<%= f.fields_for :profile do | pf | %>
+<%= f.simple_fields_for :profile do | pf | %>
 	<%= render :partial => 'accountable/profile/profile_form', :locals => {:f => pf,:pf_names => @pf_names,:new_profile => f.object.new_record?} %>
 
 <% end %>
 
-<div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+<div class="form-row">
+<%= f.input :email, :label => 'Email Address',:wrapper_html => { :class => 'form-item long' }, :label_html => { :class => 'form-label' } %>
+</div>
 
-<div><%= f.label :password %><br />
-<%= f.password_field :password %></div>
+<div class="form-row">
+<%= f.input :password,:wrapper_html => { :class => 'form-item long secure' }, :label_html => { :class => 'form-label' } %>
+</div>
 
-<div><%= f.label :password_confirmation %><br />
-<%= f.password_field :password_confirmation %></div>
+<div class="form-row">
+<%= f.input :password_confirmation,:wrapper_html => { :class => 'form-item long secure' }, :label_html => { :class => 'form-label' } %>
+</div>
 
 

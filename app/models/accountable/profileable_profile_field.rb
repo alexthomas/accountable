@@ -8,11 +8,11 @@ class Accountable::ProfileableProfileField < ActiveRecord::Base
     # attr_accessible :publik,:required,:profileable_type,:profile_field_id
   
     def self.missing_profile_fields profileable_type
-      profile_fields = ProfileableProfileField.where('profileable_type = ?',profileable_type)
+      profile_fields = self.where('profileable_type = ?',profileable_type)
       profile_fields_ids =  profile_fields.map { |pf| pf.profile_field_id }
       logger.debug "profile fields ids #{profile_fields_ids.inspect }"
       missing_fields = Array.new
-      ProfileField.all.each do | pf | 
+      Accountable::ProfileField.all.each do | pf | 
         logger.debug "profile field id #{pf.id }"
         missing_fields << pf if !profile_fields_ids.include? pf.id
       end
@@ -22,9 +22,9 @@ class Accountable::ProfileableProfileField < ActiveRecord::Base
     private 
   
       def update_active_fields
-       af_could_be_affected = ActiveField.where('profile_field_id = ?',profile_field_id)
+       af_could_be_affected = Accountable::ActiveField.where('profile_field_id = ?',profile_field_id)
        af_could_be_affected.each  do | af |
-        profile = Profile.find(af.profile_id)
+        profile = Accountable::Profile.find(af.profile_id)
         af.destroy if profile.profileable_type == profileable_type
        end
    

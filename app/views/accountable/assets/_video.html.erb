@@ -1,0 +1,9 @@
+<section class="resource-file resource card-videos extended-block">
+    <div class="inner">
+    	<div class="video asset">
+    	    <a href="<%= video.embed_url %>" class="video-link"><span></span><img src="<%= video.thumbnail %>" /></a>
+    		<p><%= video.description if !video.title.blank? %></p>
+    		<a href="<%= video.embed_url %>" class="video-link video-icon"><%= raw video.title if !video.title.blank? %></a>
+    	</div>
+	</div>
+</section>

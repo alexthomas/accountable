@@ -1,0 +1,25 @@
+<div class="video">
+	<%= raw(f.object.embed_video) if !f.object.video_type.blank? %>
+	<div class="form-row keep">
+		<%= f.input :title, :wrapper_html => { :class => 'form-item long' }, :label_html => { :class => 'form-label' } %>
+	</div>
+	
+	<div class="form-row">
+		<%= f.input :description, :input_html => { :cols => 60, :rows => 1 }, :wrapper_html => { :class => 'form-item long' }, :label_html => { :class => 'form-label' } %>
+	</div>
+	
+	<% if f.object.new_record? %>
+	<div class="form-row">
+		<%= f.input :attached_video, :as => :file, :wrapper_html => { :class => 'form-item long' }, :label_html => { :class => 'form-label' } %>
+	</div>
+	<div class="form-row">
+		<a href="#" class="add">Add video by URL</a>
+		<%= f.input :remote_video_url, :wrapper_html => { :class => 'form-item long hide' }, :label_html => { :class => 'form-label' } %>
+	</div>
+	<% end %>
+
+	<div class="form-row delete keep">
+		<a href="#" class="btn edit hide">Edit Video</a>
+		<%= link_to_remove_fields "Delete Video",f,'.asset', :remove_fields, :class => 'btn btn-danger' %>
+	</div>
+</div>

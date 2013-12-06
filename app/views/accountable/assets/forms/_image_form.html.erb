@@ -1,0 +1,20 @@
+
+<% show_title_descr = !show_title_descr.nil? ? show_title_descr : true %>
+<% editable = !editable.nil? ? editable : false %>
+<% deletable = !deletable.nil? ? deletable : true %>
+
+
+<div class="form-row">
+	<% asset_partial = (show_title_descr) ? '/assets/forms/asset_form' : '/assets/forms/asset_upload_form' %>
+</div>
+
+<div class="image asset">
+	<%= raw("<span class=\"keep\">#{image_tag f.object.url(:thumb)}</span>") if !f.object.new_record? %>
+	<%= render :partial => asset_partial, :locals => {:f => f,:asset_label => 'Image',:editable => editable} %>
+	<% if deletable %>
+	<div class="form-row delete keep">
+		<a href="#" class="btn edit hide">Edit Image</a>
+		<%= link_to_remove_fields "Delete Image",f,'.asset', :remove_fields, :class => 'btn btn-danger'  %>
+	</div>
+	<% end %>
+</div>

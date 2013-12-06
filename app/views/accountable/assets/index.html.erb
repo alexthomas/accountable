@@ -1,0 +1,7 @@
+<h1>All <%= "#{@asset_type}s"%></h1>
+
+<%= render @assets %>
+<ul>
+		<li><%= link_to "new #{@asset_type}", send("new_#{@asset_type}_path") %></li>
+		
+</ul>

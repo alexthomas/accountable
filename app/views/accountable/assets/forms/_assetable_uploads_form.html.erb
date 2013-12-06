@@ -1,0 +1,72 @@
+<!-- Panel Wrapper -->
+<div class="panel grid_4">
+	<div class="panel-header">
+		<span>Image</span>
+	</div>
+
+	<div class="panel-body">
+		<div class="card-images">
+			<%= f.simple_fields_for :images do | img_form | %>
+				<%= render :partial => 'assets/forms/image_form', :locals => {:f => img_form } %> 
+		  	<% end %>
+		</div>
+	</div>
+	<div class="button-row">
+		<%= link_to_add_fields "Add Image", f, :images,'assets/forms/image_form','.card-images',{},true,{:class => 'btn asset-add'} %>
+	</div>
+</div>
+
+
+<!-- Panel Wrapper -->
+<div class="panel grid_4">
+	<div class="panel-header">
+		<span>Video</span>
+	</div>
+
+	<div class="panel-body">
+		<div class="card-videos">
+			<%= f.simple_fields_for :videos do | video_form | %>
+				<%= render :partial => 'assets/forms/video_form', :locals => {:f => video_form } %>   
+		  	<% end %>
+		</div>
+	</div>
+	<div class="button-row">
+		<%= link_to_add_fields "Add Video", f, :videos,'/assets/forms/video_form','.card-videos',{},true,{:class => 'btn asset-add'} %>
+	</div>
+</div>
+
+<!-- Panel Wrapper -->
+<div class="panel grid_4">
+	<div class="panel-header">
+		<span>Audio</span>
+	</div>
+
+	<div class="panel-body">
+		<div class="card-audio">
+			<%= f.simple_fields_for :audios do | audio_form | %>
+				<%= render :partial => 'assets/forms/audio_form', :locals => {:f => audio_form } %>   
+		  	<% end %>
+		</div>
+	</div>
+	<div class="button-row">
+		<%= link_to_add_fields "Add Audio", f, :audios,'/assets/forms/audio_form','.card-audio',{ },true,{:class => 'btn asset-add'} %>
+	</div>
+</div>
+
+<!-- Panel Wrapper -->
+<div class="panel grid_4">
+	<div class="panel-header">
+		<span>PDF</span>
+	</div>
+
+	<div class="panel-body">
+		<div class="resources-block">
+			<%= f.simple_fields_for :resources do | resource_form | %>
+				<%= render :partial => 'assets/forms/pdf_form', :locals => {:f => resource_form } %>   
+		  	<% end %>
+		</div>
+	</div>
+	<div class="button-row">
+		<%= link_to_add_fields "Add PDF", f, :resources,'/assets/forms/pdf_form','.resources-block',{},true,{:class => 'btn asset-add'} %>
+	</div>
+</div>

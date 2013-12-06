@@ -1,0 +1,20 @@
+<% editable = defined?(editable) ?  editable : false %>
+
+<div class="form-row keep">
+	<%= f.input :title, :wrapper_html => { :class => 'form-item long' }, :label_html => { :class => 'form-label' } %>
+</div>
+
+<div class="form-row">
+	<%= f.input :description, :input_html => { :cols => 60, :rows => 1 }, :wrapper_html => { :class => 'form-item long' }, :label_html => { :class => 'form-label' } %>
+</div>
+
+<% if f.object.assetable.nil? || editable %>
+<div class="form-row">
+	<%= f.input :attachment, :label => asset_label, :wrapper_html => { :class => 'form-item long' }, :label_html => { :class => 'form-label' } %>
+</div>
+
+<div class="form-row">
+	<a href="#" class="add">Add image by URL</a>
+	<%= f.input :asset_url, :label => asset_url_label ||= 'Image URL', :wrapper_html => { :class => 'form-item long hide' }, :label_html => { :class => 'form-label' }%>
+</div>
+<% end %>

@@ -1,0 +1,7 @@
+<section class="resource-file resource card-images extended-block">
+    <div class="inner">
+    	<h3><%= raw image.title if !image.title.blank? %></h3>
+    	<p><%= raw image.description if !image.description.blank?%></p>
+    	<a class="image" href="<%= image.url %>"><%= image_tag image.url %></a>
+	</div>
+</section>

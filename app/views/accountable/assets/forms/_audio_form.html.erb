@@ -1,0 +1,8 @@
+<div class="audio asset">
+	<%= render :partial => '/assets/forms/asset_form', :locals => {:f => f,:asset_label => 'Card Audio', :asset_url_label => 'Audio URL'} %>
+	
+	<div class="form-row delete keep">
+		<a href="#" class="btn edit hide">Edit Audio</a>
+		<%= link_to_remove_fields "Delete Audio File",f,'.asset', :remove_fields, :class => 'btn btn-danger' %>
+	</div>
+</div>

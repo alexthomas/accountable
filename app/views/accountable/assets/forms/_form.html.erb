@@ -1,0 +1,11 @@
+<%= form_for @asset do | f | %>
+	
+	<%= render 'error_messages' %>
+
+	<%= render :partial => 'asset_form', :locals => {:f => f, :asset_type => @asset_type} %>
+	
+	<div class="actions">
+		<%= f.submit "#{form_type} #{@asset_type}" %>
+	</div>
+	
+<% end %>

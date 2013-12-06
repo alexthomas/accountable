@@ -26,13 +26,13 @@ module Accountable
       end
 
       def profile_fields
-        pp_fields ||= ProfileableProfileField.where(profileable_type: class_name)
+        pp_fields ||= Accountable::ProfileableProfileField.where(profileable_type: class_name)
         pp_fields
       end
 
       def profile_field_names
         spf_ids = profile_fields.map { |spf| spf.profile_field_id }
-        profile_fields = ProfileField.find(spf_ids)
+        profile_fields = Accountable::ProfileField.find(spf_ids)
         field_names = Hash.new
         profile_fields.each do |pf|
           field_names.store(pf.id,pf.name)
@@ -44,12 +44,14 @@ module Accountable
     
         def initialize(options = {})
           super
+          options = options.with_indifferent_access
           logger.debug "the options in init profile are #{options.inspect}"
           if !options.has_key?(:profile_attributes)
             self.build_profile unless self.profile
-            self.build_profile_fields
+            
             logger.debug "initialising profile object #{self.profile.inspect}"
           end
+          self.build_profile_fields
           self.profile.build_photo if self.profile.photo.nil? && !options.has_key?(:photo_attributes)
         end
       
@@ -64,7 +66,7 @@ module Accountable
           spf = self.profile.profile_fields
           pf_id = false
           spf.each  do | pf | pf_id = pf.id if pf.name == field_name  end 
-          profile_field = pf_id ? ActiveField.find(:first,:conditions =>{:profile_id => self.profile.id,:profile_field_id => pf_id}) : ''
+          profile_field = pf_id ? Accountable::ActiveField.find(:first,:conditions =>{:profile_id => self.profile.id,:profile_field_id => pf_id}) : ''
         end
     
       end

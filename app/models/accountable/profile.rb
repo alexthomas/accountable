@@ -15,8 +15,13 @@ class Accountable::Profile < ActiveRecord::Base
     validates :name,               :presence => true,
                                    :length => { :maximum => 255 }
   
-    # attr_accessible :name,:photo_attributes,:active_fields_attributes,:address_attributes
-  
+    attr_accessor :dob_day,:dob_month,:dob_year
+    
+    def dob=
+      Date.new("#{self.dob_day}-#{self.dob_month}-#{self.dob_year}")
+    end
+    
+    
     def public_fields
       public_fields = Hash.new
       self.active_fields.each { |af|  public_fields[af.profile_field.name] = af.value  unless !af.publik}

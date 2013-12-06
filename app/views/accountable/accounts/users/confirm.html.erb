@@ -1,8 +1,9 @@
-<%= form_for @user, :html => { :class => "stacked form", :id => "#confirm_user_form" } do |f| %>
+<%= simple_form_for @user, :html => { :class => "stacked form", :id => "#confirm_user_form" } do |f| %>
 	<%= render :partial => 'accountable/accounts/users/password_form', :locals => {:f => f, :user => @user} %>
-	<%= f.hidden_field :invite_code, :value => @invite_code ||= @user.invite_code %>
-	<%= f.hidden_field :confirming, :value => true %>
-	<div class="inner-actions">
-		<%= f.submit "Confirm User", :class => 'btn primary'%>
+	<%= f.input :invite_code, :as => :hidden, :input_html { :value => @invite_code ||= @user.invite_code } %>
+	<%= f.input :confirming, :as => :hidden, :input_html { :value => true } %>
+
+	<div class="form-actions">
+		<p><%= f.button :submit, "Confirm User", :class => 'btn form-btn' %></p>
 	</div>
 <% end %>

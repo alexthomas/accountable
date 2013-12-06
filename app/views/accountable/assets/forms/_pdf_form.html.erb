@@ -1,0 +1,8 @@
+<div class="pdf asset">
+	<%= render :partial => '/assets/forms/asset_form', :locals => {:f => f,:asset_label => 'Card PDF', :asset_url_label => 'PDF URL' } %>
+
+	<div class="form-row delete keep">
+		<a href="#" class="btn edit hide">Edit PDF</a>
+		<%= link_to_remove_fields "Delete PDF",f,'.asset', :remove_fields, :class => 'btn btn-danger' %>
+	</div>
+</div>
