@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Accountable::VERSION
   s.authors     = ["Alex Thomas"]
   s.email       = ["alex@gonetomorrow.co.uk"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Accountable."
-  s.description = "TODO: Description of Accountable."
+  s.homepage    = ""
+  s.summary     = "Accountable - A gem to add Account functionality to Rails Applications"
+  s.description = ""
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
