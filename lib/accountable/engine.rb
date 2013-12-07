@@ -1,6 +1,6 @@
 module Accountable
   class Engine < Rails::Engine
-      #isolate_namespace Accountable
+      # isolate_namespace Accountable
       config.autoload_paths += Dir[self.root.join('app', 'models', '{**}/{**}')]
       
       initializer "accountable.load_app_instance_data" do |app|

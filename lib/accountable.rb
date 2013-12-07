@@ -1,5 +1,4 @@
 require 'cancan'
-require 'jquery-rails'
 # require 'resque'
 require 'will_paginate'
 require 'open-uri'

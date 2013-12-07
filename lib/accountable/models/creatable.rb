@@ -142,7 +142,5 @@ module Accountable
       end
       
     end
-    
   end
-  
 end

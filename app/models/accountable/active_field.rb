@@ -1,14 +1,16 @@
-class Accountable::ActiveField < ActiveRecord::Base
-    belongs_to :profile
-    belongs_to :profile_field
+module Accountable
+  class ActiveField < ActiveRecord::Base
+      belongs_to :profile
+      belongs_to :profile_field
   
-    # attr_accessible :profile_field_id,:value,:publik
+      # attr_accessible :profile_field_id,:value,:publik
   
-    def as_json(options={})
+      def as_json(options={})
     
-        {:id       => self.id,
-         :value => self.value
-        }
-    end
+          {:id       => self.id,
+           :value => self.value
+          }
+      end
 
+  end
 end

@@ -10,16 +10,6 @@ module Accountable
       def class_name
         to_s
       end
-  
-      #def search(search)
-        #!search.nil? ? search = search.strip : search = ''
-        #if search != ''
-          #self.includes(:profile).where('profiles.name LIKE ?', "%#{search}%")
-      
-        #else
-          #{}
-        #end
-      #end
 
       def order_by(order_by='name')
         self.includes(:profile).order('profiles.name')
@@ -44,15 +34,15 @@ module Accountable
     
         def initialize(options = {})
           super
-          options = options.with_indifferent_access
-          logger.debug "the options in init profile are #{options.inspect}"
-          if !options.has_key?(:profile_attributes)
-            self.build_profile unless self.profile
-            
-            logger.debug "initialising profile object #{self.profile.inspect}"
-          end
-          self.build_profile_fields
-          self.profile.build_photo if self.profile.photo.nil? && !options.has_key?(:photo_attributes)
+          # options = options.with_indifferent_access
+          #          logger.debug "the options in init profile are #{options.inspect}"
+          #          if !options.has_key?(:profile_attributes)
+          #            self.build_profile unless self.profile
+          #            
+          #            logger.debug "initialising profile object #{self.profile.inspect}"
+          #          end
+          #          self.build_profile_fields
+          #          self.profile.build_photo if self.profile.photo.nil? && !options.has_key?(:photo_attributes)
         end
       
         def build_profile_fields
