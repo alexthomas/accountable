@@ -90,6 +90,7 @@ module Accountable
         if !Plan.can_add_user(current_user)
           flash[:failure] = "Sorry you can't add any more users on your plan"
           redirect_to @account
+        end
       end
       
       def is_confirmed?
