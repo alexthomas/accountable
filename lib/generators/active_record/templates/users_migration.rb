@@ -27,6 +27,7 @@ class AccountableCreate<%= table_name.camelize%>Tables < ActiveRecord::Migration
     
     create_table :profiles do |t|
       t.string  :name
+      t.date    :dob
       t.integer :address_id
       t.integer :profileable_id
       t.string  :profileable_type
