@@ -6,6 +6,8 @@ module Accountable
       before_filter :have_confirmation_code?, :only => [:confirm]
       before_filter :set_body_id
       before_filter :set_profile_field_names, :only => [:new,:edit,:create,:update]
+      before_filter :get_account
+      before_filter :can_add_user_check, :only => [:new,:create]
       
 
 
@@ -49,7 +51,8 @@ module Accountable
 
       def create
         @user = User.new params[:user]
-        @user.moa = User.first.account
+        @user.moa = @account
+        @user.user_status = -1 #users created through accounts dont require pwds until confirm
         if @user.save
           flash[:success] = "User successfully added"
           #redirect_to instance_variable_get("@#{@user_type}")
@@ -78,14 +81,17 @@ module Accountable
       private 
 
       def get_account
-        #check user has account where they can add users anf if they have 
+        @account = current_user.account
+      end
+      
+      def can_add_user_check
+        #check user has account where they can add users and if they have 
         #any user spaces left
         if !Plan.can_add_user(current_user)
           flash[:failure] = "Sorry you can't add any more users on your plan"
-          redirect_to current_user.account 
-        end
+          redirect_to @account
       end
-
+      
       def is_confirmed?
         redirect_to(@user) if @user.is_confirmed?
       end

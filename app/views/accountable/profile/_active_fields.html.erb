@@ -4,7 +4,7 @@
 <% field_id = pf_names.fetch(f.object.profile_field_id).downcase.strip.tr(' ','-')%>
 <% active_label = pf_names.fetch(f.object.profile_field_id) %>
 <% pf = Accountable::ProfileField.find f.object.profile_field_id %>
-<% field_type = pf.input_type %>
+<% field_type = pf.var_type %>
 
 
 <%= f.input :value ,:as => field_type, :label => active_label, :wrapper_html => { :class => 'form-item long' }, :label_html => { :class => 'form-label'}, :input_html => { :size => 255 } %>

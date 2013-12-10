@@ -3,7 +3,7 @@ module Accountable
   
       belongs_to :profileable, :polymorphic => true
   
-      has_one :photo, :as => :assetable,  :class_name => "Image", :dependent => :destroy
+      has_one :photo, :as => :assetable,  :class_name => "Accountable::Assets::Image", :dependent => :destroy
       # has_one :address, :as => :addressable
   
       has_many :active_fields, :dependent => :destroy

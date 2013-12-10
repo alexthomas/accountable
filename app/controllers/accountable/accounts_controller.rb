@@ -30,7 +30,6 @@ module Accountable
 
       @account.owner.assigned_roles.build :role_id => 3
       @account.owner.assigned_groups.build :group_id => 1
-      @account.owner.user_status = 0
       @account.members << @account.owner if @account.owner.valid?
       
       if @account.save

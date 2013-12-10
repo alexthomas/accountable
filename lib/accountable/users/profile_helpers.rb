@@ -34,15 +34,12 @@ module Accountable
     
         def initialize(options = {})
           super
-          # options = options.with_indifferent_access
-          #          logger.debug "the options in init profile are #{options.inspect}"
-          #          if !options.has_key?(:profile_attributes)
-          #            self.build_profile unless self.profile
-          #            
-          #            logger.debug "initialising profile object #{self.profile.inspect}"
-          #          end
-          #          self.build_profile_fields
-          #          self.profile.build_photo if self.profile.photo.nil? && !options.has_key?(:photo_attributes)
+          options = options.with_indifferent_access
+          if self.profile.nil?
+            self.build_profile
+            self.build_profile_fields
+            self.profile.build_photo if self.profile.photo.nil? && !options.has_key?(:photo_attributes)
+          end      
         end
       
         def build_profile_fields
