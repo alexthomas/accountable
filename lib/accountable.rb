@@ -23,6 +23,7 @@ module Accountable
   end
   
   require "validators/invite_code_validator"
+  require "validators/date_validator"
   require "accountable/models"
   require "accountable/models/creatable"
   require "accountable/search_helpers"

@@ -15,11 +15,21 @@ module Accountable
   
       validates :name,               :presence => true,
                                      :length => { :maximum => 255 }
-  
+      
+      validates :dob,                :presence => true, 
+                                     :date => {on_or_before: 74.years.ago, on_or_after: 24.years.ago}
+                            
+                                     
       attr_accessor :dob_day,:dob_month,:dob_year
-    
-      def dob=
-        Date.new("#{self.dob_day}-#{self.dob_month}-#{self.dob_year}")
+      before_validation :create_dob
+      
+      def create_dob
+        
+        begin
+          @dob = Date.new("#{self.dob_day}-#{self.dob_month}-#{self.dob_year}")
+        rescue
+          @dob = nil
+        end
       end
     
     
