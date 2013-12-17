@@ -13,23 +13,31 @@ module Accountable
       accepts_nested_attributes_for :active_fields,   :allow_destroy => true, :reject_if => :all_blank
       # accepts_nested_attributes_for :address,     :allow_destroy => true
   
-      validates :name,               :presence => true,
-                                     :length => { :maximum => 255 }
-      
-      validates :dob,                :presence => true, 
-                                     :date => {on_or_before: 74.years.ago, on_or_after: 24.years.ago}
+      validates :name,              :presence => true,
+                                    :length => { :maximum => 255 }
+                                    
+      validates :dob_day,           :presence => true  
+      validates :dob_month,         :presence => true  
+      validates :dob_year,          :presence => true    
+      # validates :dob,                :presence => true
+                                     # :date => {on_or_after: 74.years.ago, on_or_after: 24.years.ago}
                             
                                      
       attr_accessor :dob_day,:dob_month,:dob_year
       before_validation :create_dob
+
       
       def create_dob
-        
+        Rails.logger.debug "creating dob: #{self.dob_day}-#{self.dob_month}-#{self.dob_year}"
         begin
-          @dob = Date.new("#{self.dob_day}-#{self.dob_month}-#{self.dob_year}")
+          self.dob = Date.new(self.dob_year.to_i,self.dob_month.to_i,self.dob_day.to_i)
+          Rails.logger.debug "dob is #{dob} - #{self.dob}"
         rescue
-          @dob = nil
+          Rails.logger.debug "rescuing dob builder"
+          self.dob = nil
+          self.errors[:dob] = "is invalid"
         end
+        
       end
     
     
