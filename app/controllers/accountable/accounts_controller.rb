@@ -111,12 +111,4 @@ module Accountable
   end
 end
 
-# def account_params
-#   params.require(:account).permit(:account_status,:confirmation_code,:confirming, owner_attributes: [:name, :email, :password, :password_confirmation, :remember_me,:user_status,
-#   :invite_code,:confirming,profile_attributes: [:name, photo_attributes: [:title, :description, :attachment, 
-#   :attachment_file_name, :attachment_content_type, :attachment_file_size,:asset_url,:asset_remote_url,:metadata,:attachment],
-#   active_fields_attributes: [:profile_field_id,:value,:publik]], role_attributes: [:name], 
-#   group_attributes: [:name,:description],invite_attributes: [:invitee_id,:invite_code, :activated, :invite_date, :activated_date]])
-# end
-
 
