@@ -56,7 +56,8 @@ module Accountable
         end
   
         Paperclip.interpolates :toi  do |attachment, style|
-          return "#{attachment.instance.assetable.class.name.downcase.pluralize}"
+          
+          return attachment.instance.assetable.nil? ? "uploads" : "#{attachment.instance.assetable.class.name.downcase.pluralize}"
         end
   
         Paperclip.interpolates :toa  do |attachment, style|

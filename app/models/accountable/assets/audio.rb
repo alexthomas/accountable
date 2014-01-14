@@ -1,6 +1,6 @@
 module Accountable
   module Assets
-    class Audio < Asset
+    class Audio < Accountable::Asset
     
         has_attached_file :attachment,
           :url => :attached_asset_url,
@@ -10,10 +10,10 @@ module Accountable
 
         validates_presence_of :asset_remote_url, :if => :asset_url?, :message => 'audio url is invalid or inaccessible'
 
-        validates_attachment_size :attachment, :less_than => 5.megabytes,
+        validates_attachment_size :attachment, :less_than => 10.megabytes,
             :message => 'filesize must be less than 5 MegaBytes'
-        validates_attachment_content_type :attachment, :content_type => [ 'application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3' ],
-                        :message => 'file must be of filetype .mp3'
+        validates_attachment_content_type :attachment, :content_type => [ 'application/wav','audio/x-wav','application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3' ],
+                        :message => 'file must be of filetype .mp3 or .wav'
         before_save :extract_metadata
         serialize :metadata
     

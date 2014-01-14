@@ -1,6 +1,6 @@
 module Accountable
   module Assets
-    class Image < Asset
+    class Image < Accountable::Asset
 
       # attr_accessible :attachment
 
