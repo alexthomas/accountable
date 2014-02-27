@@ -74,7 +74,7 @@ class AccountableCreate<%= table_name.camelize%>Tables < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table :oauth do |t|
+    create_table :oauths do |t|
       t.references  :<%= name%>
       t.string      :provider
       t.string      :uid

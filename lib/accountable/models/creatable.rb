@@ -6,10 +6,11 @@ module Accountable
         extend Accountable::Users::ProfileHelpers, Accountable::Users::AccessibleHelpers,Accountable::SearchHelpers                    
         has_many :assigned_roles, :dependent => :destroy, :class_name => "Accountable::AssignedRole"
         has_many :roles, :through => :assigned_roles, :class_name => "Accountable::Role"
-
         has_many :assigned_groups, :dependent => :destroy, :class_name => "Accountable::AssignedGroup"
         has_many :groups, :through => :assigned_groups, :class_name => "Accountable::Group"
-
+        
+        has_many :oauths, :class_name => "Accountable::Oauth"
+        
         has_one :profile, :as => :profileable, :dependent => :destroy, :class_name => "Accountable::Profile"
         has_one :account, :foreign_key => :owner_id, :dependent => :destroy, :class_name => "Accountable::Account"
         has_one :invite, :as => :inviteable, :dependent => :destroy, :class_name => "Accountable::Invite"
