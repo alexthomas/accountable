@@ -37,7 +37,8 @@ module Accountable
 
         validates :email,     :presence => true,
                               :uniqueness => { :case_sensitive => true },
-                              :format => { :with => Devise.email_regexp }
+                              :format => { :with => Devise.email_regexp },
+                              :if => perform_email_validation?
 
         #validates_format_of :email, :with => Devise.email_regexp, :allow_blank => false, :if => :email_changed?                      
         validates :password,  :presence => {:on => :create},
@@ -63,7 +64,11 @@ module Accountable
         before_save :confirm_user
         before_create :generate_invite
         after_create :send_confirmation_email
-
+        
+        def perform_email_validation?
+          true
+        end
+        
         def is_confirmed?
           self.user_status == 1
         end
