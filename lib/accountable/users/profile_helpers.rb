@@ -34,7 +34,7 @@ module Accountable
     
         def initialize(options = {})
           super
-          options = options.with_indifferent_access
+          options = options.with_indifferent_access 
           if self.profile.nil?
             self.build_profile
             self.build_profile_fields

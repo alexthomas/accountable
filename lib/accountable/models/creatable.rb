@@ -38,7 +38,7 @@ module Accountable
         validates :email,     :presence => true,
                               :uniqueness => { :case_sensitive => true },
                               :format => { :with => Devise.email_regexp },
-                              :if => perform_email_validation?
+                              :if => lambda { |user| user.perform_email_validation?}
 
         #validates_format_of :email, :with => Devise.email_regexp, :allow_blank => false, :if => :email_changed?                      
         validates :password,  :presence => {:on => :create},
@@ -121,7 +121,7 @@ module Accountable
         end
         
         private 
-
+          
           def generate_invite
             self.build_invite(:invite_code =>"#{self.generate_invite_code}",:invitee_id => self.moa.owner.id,:invite_date => Time.now) unless self.moa.nil? || self.moa.new_record?  
           end
