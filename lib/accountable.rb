@@ -2,6 +2,7 @@ require 'cancan'
 # require 'resque'
 require 'will_paginate'
 require 'open-uri'
+require 'open_uri_redirections'
 require 'paperclip'
 require "mp3info"
 require "devise"
