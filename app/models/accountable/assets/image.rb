@@ -13,7 +13,7 @@ module Accountable
           :path => :attached_asset_path
     
       #validates_attachment_presence :image
-      validates_attachment_size :attachment, :less_than => 3.megabytes
+      validates_attachment_size :attachment, :less_than => 4.megabytes
       validates_attachment_content_type :attachment, :content_type => ['image/jpeg', 'image/png','image/gif']
 
       def as_json(options={})
