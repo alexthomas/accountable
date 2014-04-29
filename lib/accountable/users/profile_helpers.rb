@@ -11,8 +11,8 @@ module Accountable
         to_s
       end
 
-      def order_by(order_by='name')
-        self.includes(:profile).order('profiles.name')
+      def order_by(order_by='surname')
+        self.includes(:profile).order('profiles.surname')
       end
 
       def profile_fields
