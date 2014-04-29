@@ -13,7 +13,10 @@ module Accountable
       accepts_nested_attributes_for :active_fields,   :allow_destroy => true, :reject_if => :all_blank
       # accepts_nested_attributes_for :address,     :allow_destroy => true
   
-      validates :name,              :presence => true,
+      validates :first_name,        :presence => true,
+                                    :length => { :maximum => 255 }
+      
+      validates :surname,           :presence => true,
                                     :length => { :maximum => 255 }
                                     
       # validates :dob_day,           :presence => true  
