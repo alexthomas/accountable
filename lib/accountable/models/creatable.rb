@@ -58,12 +58,18 @@ module Accountable
         validates :invite_code, :invite_code  => { :association => 'invite', :allow_nil => false },
                                 :if => lambda { |user| user.user_status == 0 && user.confirming}
 
-        delegate :name, :to => :profile
+        delegate :first_name, :to => :profile
+        delegate :surname, :to => :profile
         delegate :address, :to => :profile
 
         before_save :confirm_user
         before_create :generate_invite
         after_create :send_confirmation_email
+        
+        
+        def name
+          self.first_name + " " + self.surname
+        end
         
         def perform_email_validation?
           true
